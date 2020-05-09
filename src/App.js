@@ -1,25 +1,20 @@
 import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import Typography from '@material-ui/core/Typography';
+import { Provider } from 'react-redux';
+import store from './store/store';
+import { ConnectedRouter } from 'connected-react-router';
+import { createBrowserHistory } from 'history';
 
+
+const history = createBrowserHistory();
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Provider store={store} >
+      <ConnectedRouter history={history}>
+        {/* <Routes/>*/}
+        <Typography variant="h5">SOMETHING COOL'S COMING</Typography>
+      </ConnectedRouter>
+    </Provider>
   );
 }
 
