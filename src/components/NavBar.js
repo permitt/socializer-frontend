@@ -18,6 +18,9 @@ import ListItemText from '@material-ui/core/ListItemText';
 import PhotoLibrary from '@material-ui/icons/PhotoLibrary';
 import ExitToApp from '@material-ui/icons/ExitToApp';
 import Settings from '@material-ui/icons/Settings';
+import { withRouter } from 'react-router-dom';
+import { PRIMARY_COLOR, SECONDARY_COLOR } from '../assets/constants';
+
 
 const drawerWidth = 240;
 
@@ -27,7 +30,7 @@ const useStyles = makeStyles((theme) => ({
 
     },
     appBar: {
-        backgroundColor: '#050A30',
+        backgroundColor: PRIMARY_COLOR,
         transition: theme.transitions.create(['margin', 'width'], {
             easing: theme.transitions.easing.sharp,
             duration: theme.transitions.duration.leavingScreen,
@@ -59,6 +62,7 @@ const useStyles = makeStyles((theme) => ({
     drawerHeader: {
         display: 'flex',
         alignItems: 'center',
+        backgroundColor: SECONDARY_COLOR,
         padding: theme.spacing(0, 1),
         // necessary for content to be below app bar
         ...theme.mixins.toolbar,
@@ -82,7 +86,7 @@ const useStyles = makeStyles((theme) => ({
     },
 }));
 
-export default function NavBar() {
+function NavBar(props) {
     const classes = useStyles();
     const theme = useTheme();
     const [open, setOpen] = React.useState(false);
@@ -114,9 +118,9 @@ export default function NavBar() {
                     >
                         <MenuIcon />
                     </IconButton>
-                    <Typography variant="h6" noWrap>
+                    <Typography variant="h6" noWrap onClick={() => props.history.push('/')}>
                         Socializer
-          </Typography>
+                    </Typography>
                 </Toolbar>
             </AppBar>
             <Drawer
@@ -130,7 +134,7 @@ export default function NavBar() {
             >
                 <div className={classes.drawerHeader}>
                     <IconButton onClick={handleDrawerClose}>
-                        {theme.direction === 'ltr' ? <ChevronLeftIcon /> : <ChevronRightIcon />}
+                        {theme.direction === 'ltr' ? <ChevronLeftIcon style={{ color: 'white' }} /> : <ChevronRightIcon />}
                     </IconButton>
                 </div>
                 <Divider />
@@ -161,3 +165,5 @@ export default function NavBar() {
         </div>
     );
 }
+
+export default withRouter(NavBar);

@@ -3,8 +3,8 @@ import Background from '../assets/background-image.jpg'
 import Typography from '@material-ui/core/Typography'
 import Button from '@material-ui/core/Button'
 import Grid from '@material-ui/core/Grid'
-import NavBar from './NavBar'
-import Footer from './Footer';
+import NavBar from '../components/NavBar'
+import Footer from '../components/Footer';
 
 export default function HomePage(props) {
 
@@ -30,7 +30,7 @@ export default function HomePage(props) {
 
                     </Grid>
                     <Grid item xs>
-                        <Button variant="contained" color="secondary" style={{ fontSize: '18px', padding: '20px 40px', marginTop: 30, backgroundColor: '#000C66', opacity: '90%' }}>LOGIN</Button>
+                        <Button onClick={() => props.history.push('/login')} variant="contained" color="secondary" style={{ fontSize: '18px', padding: '20px 40px', marginTop: 30, backgroundColor: '#000C66', opacity: '90%' }}>LOGIN</Button>
                     </Grid>
                 </Grid>
 
