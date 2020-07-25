@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react'
 import Snackbar from '@material-ui/core/Snackbar';
 import Alert from '@material-ui/lab/Alert';
 import { connect } from 'react-redux';
+import { resetMessage } from '../store/actions/notificationActions';
 
 function NotificationDisplay(props) {
     const [open, setOpen] = useState(false);
@@ -14,7 +15,7 @@ function NotificationDisplay(props) {
     return (
         <div>
             {props.message === null ? '' :
-                <Snackbar open={open} autoHideDuration={3000} onClose={() => setOpen(false)}>
+                <Snackbar open={open} autoHideDuration={3000} onClose={() => { setOpen(false); props.reset() }}>
                     <Alert onClose={() => { setOpen(false); }} severity={(props.type).toLowerCase()}>
                         {props.message}
                     </Alert>
@@ -30,4 +31,8 @@ const mapStateToProps = state => {
     }
 };
 
-export default connect(mapStateToProps)(NotificationDisplay)
+const mapDispatchToProps = {
+    reset: resetMessage
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(NotificationDisplay)

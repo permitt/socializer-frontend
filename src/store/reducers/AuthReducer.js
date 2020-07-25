@@ -3,6 +3,9 @@ import authService from "../../services/AuthService"
 
 const initialState = {
     isAuthenticated: authService.isAuthenticated(),
+    instagramUser: null,
+    instagramPassword: null,
+
 }
 
 export default (state = initialState, action) => {

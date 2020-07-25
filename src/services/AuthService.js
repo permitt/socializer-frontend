@@ -1,5 +1,5 @@
 import ApiService from './ApiService';
-
+import jwt_decode from 'jwt-decode';
 const ENDPOINTS = {
     LOGIN: 'token/obtain/',
     LOGOUT: '',
@@ -23,6 +23,16 @@ class AuthService extends ApiService {
 
         const jwt = JSON.parse(localStorage.getItem('user'));
         return jwt && jwt.access ? !this.isExpired(jwt) : false
+
+    }
+
+    getInstagramUser = () => {
+
+    }
+
+    getInstagramPassword = () => {
+        const jwt = JSON.parse(localStorage.getItem('user'));
+
 
     }
 

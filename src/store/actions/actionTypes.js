@@ -7,3 +7,4 @@ export const DELETE_POST = 'DELETE_POST';
 
 export const ERROR = 'ERROR';
 export const SUCCESS = 'SUCCESS';
+export const RESET_MESSAGE = 'RESET_MESSAGE';

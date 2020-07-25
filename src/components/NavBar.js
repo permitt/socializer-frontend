@@ -10,17 +10,19 @@ import Typography from '@material-ui/core/Typography';
 import Divider from '@material-ui/core/Divider';
 import IconButton from '@material-ui/core/IconButton';
 import MenuIcon from '@material-ui/icons/Menu';
+import MoneyOff from '@material-ui/icons/MoneyOff';
 import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
 import ChevronRightIcon from '@material-ui/icons/ChevronRight';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
 import PhotoLibrary from '@material-ui/icons/PhotoLibrary';
+import Info from '@material-ui/icons/Info';
 import ExitToApp from '@material-ui/icons/ExitToApp';
 import Settings from '@material-ui/icons/Settings';
 import { withRouter } from 'react-router-dom';
 import { PRIMARY_COLOR, SECONDARY_COLOR } from '../assets/constants';
-
+import { connect } from 'react-redux';
 
 const drawerWidth = 240;
 
@@ -138,32 +140,54 @@ function NavBar(props) {
                     </IconButton>
                 </div>
                 <Divider />
-                <List>
-                    {['Scraped Posts'].map((text, index) => (
-                        <ListItem button key={text}>
-                            <ListItemIcon>{index % 2 === 0 ? <PhotoLibrary /> : <ExitToApp />}</ListItemIcon>
-                            <ListItemText primary={text} />
+
+
+                {props.isAuthenticated ? <>
+                    <List>
+
+                        <ListItem button key={'Scraped Posts'}>
+                            <ListItemIcon><PhotoLibrary /></ListItemIcon>
+                            <ListItemText primary={'Scraped Posts'} />
                         </ListItem>
-                    ))}
-                </List>
-                <Divider />
-                <List>
+
+                    </List>
+                    <Divider />
+                    <List>
 
 
-                    <ListItem button key={'Settings'}>
-                        <ListItemIcon><Settings /></ListItemIcon>
-                        <ListItemText primary={'Settings'} />
-                    </ListItem>
+                        <ListItem button key={'Settings'}>
+                            <ListItemIcon><Settings /></ListItemIcon>
+                            <ListItemText primary={'Settings'} />
+                        </ListItem>
 
-                    <ListItem button key={'Log Out'}>
-                        <ListItemIcon><ExitToApp /></ListItemIcon>
-                        <ListItemText primary={'Log Out'} />
-                    </ListItem>
-                </List>
+                        <ListItem button key={'Log Out'}>
+                            <ListItemIcon><ExitToApp /></ListItemIcon>
+                            <ListItemText primary={'Log Out'} />
+                        </ListItem>
+                    </List></> :
+
+
+                    <List>
+
+
+                        <ListItem button key={'About'}>
+                            <ListItemIcon><Info /></ListItemIcon>
+                            <ListItemText primary={'About'} />
+                        </ListItem>
+
+                        <ListItem button key={'Beg for an invite'}>
+                            <ListItemIcon><MoneyOff /></ListItemIcon>
+                            <ListItemText primary={'Beg For An Invite'} />
+                        </ListItem>
+                    </List>}
             </Drawer>
 
-        </div>
+        </div >
     );
 }
 
-export default withRouter(NavBar);
+const mapStateToProps = state => ({
+    isAuthenticated: state.auth.isAuthenticated
+});
+
+export default withRouter(connect(mapStateToProps)(NavBar));

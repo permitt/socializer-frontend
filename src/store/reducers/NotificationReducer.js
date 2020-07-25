@@ -1,5 +1,5 @@
 import React from 'react';
-import { ERROR, SUCCESS } from '../actions/actionTypes';
+import { ERROR, SUCCESS, RESET_MESSAGE } from '../actions/actionTypes';
 
 
 const initialState = {
@@ -13,6 +13,8 @@ export default function NotificationReducer(state = initialState, action) {
             return { message: action.payload, type: ERROR }
         case SUCCESS:
             return { message: action.payload, type: SUCCESS }
+        case RESET_MESSAGE:
+            return { message: null, type: null }
         default:
             return state;
     }
