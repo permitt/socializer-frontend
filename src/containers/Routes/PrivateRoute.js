@@ -1,15 +1,23 @@
 import React from 'react'
 import { Route, Redirect } from 'react-router-dom';
+import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
+import PublicRoute from './PublicRoute';
+import { LOGIN } from '../../assets/routes';
 
-function PrivateRoute({ component: Component, ...rest }) {
+function PrivateRoute({ isAuthenticated, component: Component, ...rest }) {
     return (
         <Route {...rest}
             render={props => {
-                return props.isAuthenticated ? <Component {...props} /> : <Redirect to={'/login'} />
+                console.log("OVO JE PROP ", isAuthenticated);
+                return isAuthenticated ? <Component {...props} /> : <Redirect to={LOGIN} />
             }}
         />
     )
+}
+
+PublicRoute.propTypes = {
+    isAuthenticated: PropTypes.bool
 }
 
 const mapStateToProps = state => {

@@ -1,14 +1,16 @@
 import React from 'react';
 import { Route, Redirect } from 'react-router-dom';
-import { connect, MapStateToProps } from 'react-redux';
+import { connect } from 'react-redux';
+import { DASHBOARD } from '../../assets/routes';
+import { compose } from 'redux'
 
 
-function PublicRoute({ component: Component, ...rest }) {
+function PublicRoute({ isAuthenticated, component: Component, ...rest }) {
     return <Route   {...rest}
-        render={props => {
+        render={renderProp => {
+            console.log(renderProp, ' je prop');
 
-            return props.isAuthenticated ? <Redirect to={'/dashboard'} /> : <Component {...props} />
-
+            return isAuthenticated ? <Redirect to={DASHBOARD} /> : <Component {...renderProp} />
         }}
 
 

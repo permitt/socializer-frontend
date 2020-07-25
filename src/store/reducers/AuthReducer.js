@@ -1,7 +1,8 @@
 import { LOGGED_IN } from "../actions/actionTypes"
+import authService from "../../services/AuthService"
 
 const initialState = {
-    isAuthenticated: false,
+    isAuthenticated: authService.isAuthenticated(),
 }
 
 export default (state = initialState, action) => {

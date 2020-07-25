@@ -1,8 +1,14 @@
-import { LOGIN } from './actionTypes';
+import { LOGIN, LOGGED_IN } from './actionTypes';
 
-export const login = values => {
+export const loginAction = payload => {
     return {
         type: LOGIN,
-        payload: values
+        payload
+    }
+}
+
+export const loggedInAction = () => {
+    return {
+        type: LOGGED_IN
     }
 }

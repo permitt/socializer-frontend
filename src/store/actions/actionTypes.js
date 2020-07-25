@@ -4,3 +4,6 @@ export const LOGGED_IN = 'LOGGED_IN';
 
 export const GET_POSTS = 'GET_POSTS';
 export const DELETE_POST = 'DELETE_POST';
+
+export const ERROR = 'ERROR';
+export const SUCCESS = 'SUCCESS';
