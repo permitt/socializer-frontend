@@ -1,16 +1,18 @@
 import React from 'react';
-import { ERROR } from '../actions/actionTypes';
+import { ERROR, SUCCESS } from '../actions/actionTypes';
 
 
 const initialState = {
-    message: '',
+    message: null,
     type: null
 }
 
-export default function notificationReducer(state = initialState, action) {
+export default function NotificationReducer(state = initialState, action) {
     switch (action.type) {
         case ERROR:
-            return { message: action.payload }
+            return { message: action.payload, type: ERROR }
+        case SUCCESS:
+            return { message: action.payload, type: SUCCESS }
         default:
             return state;
     }

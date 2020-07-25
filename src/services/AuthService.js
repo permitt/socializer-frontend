@@ -22,7 +22,6 @@ class AuthService extends ApiService {
     isAuthenticated = () => {
 
         const jwt = JSON.parse(localStorage.getItem('user'));
-        console.log(jwt);
         return jwt && jwt.access ? !this.isExpired(jwt) : false
 
     }
@@ -32,8 +31,6 @@ class AuthService extends ApiService {
             return null;
 
         const jwt = JSON.parse(atob(access.split('.')[1]));
-        console.log('isExp ,', jwt);
-        console.log("A OVO JE REZ ", jwt && jwt.exp && jwt.exp * 1000);
         const exp = jwt && jwt.exp && jwt.exp * 1000;
 
 
@@ -56,9 +53,7 @@ class AuthService extends ApiService {
     }
 
     login = async payload => {
-        console.log("WOO payload ", payload);
-        const { data } = await this.apiClient.post(ENDPOINTS.LOGIN, payload);
-        console.log("ODGOVOR WOO ", data);
+        const { data, response } = await this.apiClient.post(ENDPOINTS.LOGIN, payload);
         this.createSession(data);
         return data;
     }

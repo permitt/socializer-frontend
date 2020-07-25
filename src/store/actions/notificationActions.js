@@ -1,5 +1,5 @@
 import React from 'react';
-import { ERROR } from "./actionTypes"
+import { ERROR, SUCCESS } from "./actionTypes"
 
 export const newError = payload => {
     return {
@@ -7,3 +7,7 @@ export const newError = payload => {
         payload
     }
 }
+export const newSuccess = payload => ({
+    type: SUCCESS,
+    payload
+})

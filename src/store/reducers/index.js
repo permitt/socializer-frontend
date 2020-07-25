@@ -8,7 +8,7 @@ import NotificationReducer from './NotificationReducer';
 export default history =>
     combineReducers({
         auth: AuthReducer,
-        error: NotificationReducer,
+        notification: NotificationReducer,
         post: PostReducer,
         router: connectRouter(history),
     });
