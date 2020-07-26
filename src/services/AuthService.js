@@ -46,22 +46,9 @@ class AuthService extends ApiService {
             return null;
         }
 
-        return decoded.instagramUser;
+        return decoded.instagram;
     }
 
-    getInstagramPassword = () => {
-        const jwt = JSON.parse(localStorage.getItem('user'));
-        let decoded;
-        try {
-            decoded = jwt_decode(jwt.access);
-
-        } catch (error) {
-            return null;
-        }
-
-        return decoded.instagramUser;
-
-    }
 
     isExpired = ({ access }) => {
         if (!access)
@@ -76,7 +63,7 @@ class AuthService extends ApiService {
 
     setAuthorizationHeader = token => {
         this.api.attachHeaders({
-            Authorization: `JWT ${token}`
+            Authorization: `JWT  ${token}`
         });
     }
     destroySession = () => {
@@ -90,7 +77,7 @@ class AuthService extends ApiService {
     }
 
     login = async payload => {
-        const { data, response } = await this.apiClient.post(ENDPOINTS.LOGIN, payload);
+        const { data } = await this.apiClient.post(ENDPOINTS.LOGIN, payload);
         this.createSession(data);
         return data;
     }

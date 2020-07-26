@@ -41,7 +41,7 @@ function AddInstagram(props) {
                     <Grid container spacing={2}>
                         <Grid item xs={12}>
                             {progress ?
-                                <Typography variant='h4'>This may take a few minutes...</Typography>
+                                <Typography variant='h4'>This may take a minute or two...</Typography>
                                 : <Typography>Before we continue our business, you need to add your Instagram Account.
                                 Don't worry, we'll not access or do anything with your instagram account. See and
                                 ACCEPT the terms below. But yeah, you'll read it, suuuure..

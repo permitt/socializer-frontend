@@ -10,7 +10,7 @@ const initialState = {
 export default (state = initialState, action) => {
     switch (action.type) {
         case AUTH_USER:
-            return { ...state, isAuthenticated: action.payload }
+            return { ...state, isAuthenticated: action.payload, instagramUser: authService.getInstagramUser() }
         case AUTH_INSTAGRAM:
             return { ...state, instagramUser: action.payload }
         default:
