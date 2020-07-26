@@ -1,11 +1,15 @@
-export const styles = {
-    root: {
-        background: 'linear-gradient(45deg, #FE6B8B 30%, #FF8E53 90%)',
-        border: 0,
-        borderRadius: 3,
-        boxShadow: '0 3px 5px 2px rgba(255, 105, 135, .3)',
-        color: 'white',
-        height: 48,
-        padding: '0 30px',
+import Background from '../assets/background-image.jpg'
+
+export const homePageStyle = {
+    body: {
+        backgroundImage: `url(${Background})`, backgroundPosition: 'center',
+        backgroundSize: 'cover',
+        backgroundRepeat: 'no-repeat', width: '100%', height: '1000px'
     },
-};
+    button: {
+        "&:hover": {
+            background: "#7EC8E3",
+            color: "#050A30"
+        }, fontSize: '18px', padding: '20px 40px', marginTop: 10, backgroundColor: '#000C66', opacity: '90%'
+    }
+};  

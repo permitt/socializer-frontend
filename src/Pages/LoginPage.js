@@ -32,7 +32,7 @@ function LoginPage(props) {
                     style={{ margin: '0 auto', marginTop: 100, minHeight: '60vh' }}
                 >
 
-                    <Grid item md={12}>
+                    <Grid item md={12} xs={10}>
 
                         <Typography variant='h5'>Enter your credentials below</Typography>
 

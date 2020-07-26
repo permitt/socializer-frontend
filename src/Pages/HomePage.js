@@ -1,5 +1,4 @@
 import React from 'react'
-import Background from '../assets/background-image.jpg'
 import Typography from '@material-ui/core/Typography'
 import Button from '@material-ui/core/Button'
 import Grid from '@material-ui/core/Grid'
@@ -7,15 +6,11 @@ import NavBar from '../components/NavBar'
 import Footer from '../components/Footer';
 import Container from '@material-ui/core/Container';
 import { makeStyles } from '@material-ui/core/styles';
+import { LOGIN } from '../assets/routes'
+import { homePageStyle } from '../assets/styles'
 
 
-const useStyles = makeStyles({
-    body: {
-        backgroundImage: `url(${Background})`, backgroundPosition: 'center',
-        backgroundSize: 'cover',
-        backgroundRepeat: 'no-repeat', width: '100%', height: '1000px'
-    }
-});
+const useStyles = makeStyles(homePageStyle);
 
 
 export default function HomePage(props) {
@@ -39,7 +34,7 @@ export default function HomePage(props) {
 
                     </Grid>
                     <Grid item xs>
-                        <Button onClick={() => props.history.push('/login')} variant="contained" color="secondary" style={{ fontSize: '18px', padding: '20px 40px', marginTop: 30, backgroundColor: '#000C66', opacity: '90%' }}>LOGIN</Button>
+                        <Button className={classess.button} onClick={() => props.history.push(LOGIN)} variant="contained" color="secondary" >LOGIN</Button>
                     </Grid>
                 </Grid>
 

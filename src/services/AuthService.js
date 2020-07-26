@@ -3,6 +3,7 @@ import jwt_decode from 'jwt-decode';
 const ENDPOINTS = {
     LOGIN: 'token/obtain/',
     LOGOUT: '',
+    INSTAGRAM: 'api/instagram/',
 }
 
 class AuthService extends ApiService {
@@ -25,6 +26,12 @@ class AuthService extends ApiService {
         return jwt && jwt.access ? !this.isExpired(jwt) : false
 
     }
+
+    addInstagram = async payload => {
+        const { data } = await this.apiClient.post(ENDPOINTS.INSTAGRAM, payload);
+        return data;
+    }
+
 
     getInstagramUser = () => {
         const jwt = JSON.parse(localStorage.getItem('user'));
@@ -69,12 +76,12 @@ class AuthService extends ApiService {
 
     setAuthorizationHeader = token => {
         this.api.attachHeaders({
-            JWT: `JWT ${token}`
+            Authorization: `JWT ${token}`
         });
     }
     destroySession = () => {
         localStorage.clear();
-        this.api.removeHeaders(['Authorization', 'JWT']);
+        this.api.removeHeaders(['Authorization']);
     }
 
     createSession = (user) => {

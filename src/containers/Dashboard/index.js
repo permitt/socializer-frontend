@@ -26,11 +26,12 @@ function Dashboard(props) {
                 component={Paper}
                 direction="column"
                 justify="center"
+                xs={10}
                 md={10}
                 alignItems="center"
                 style={{ margin: '0 auto', marginTop: 100, minHeight: '100vh' }}
             >
-                <AddInstagram />
+                {props.instagram ? '' : <AddInstagram />}
 
 
             </Grid>
@@ -40,6 +41,8 @@ function Dashboard(props) {
 
 }
 
+const mapStateToProps = state => ({
+    instagram: state.auth.instagramUser
+});
 
-
-export default connect(null)(Dashboard);
+export default connect(mapStateToProps)(Dashboard);

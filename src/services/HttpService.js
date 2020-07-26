@@ -3,8 +3,27 @@ import axios from 'axios';
 class HttpService {
     constructor(options = {}) {
         this.client = axios.create(options);
+        this.client.interceptors.response.use(this.handleSuccessResponse, this.handleErrorResponse);
+
+    }
+    handleSuccessResponse(response) {
+        return response;
     }
 
+    handleErrorResponse(error) {
+        const { status } = error.response;
+
+        switch (status) {
+            case 401: {
+                this.unauthorizedCallback();
+                break;
+            }
+            default:
+                break;
+        }
+
+        return Promise.reject(error);
+    }
     attachHeaders = headers => {
         Object.assign(this.client.defaults.headers, headers);
     }
