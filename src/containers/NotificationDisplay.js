@@ -12,11 +12,17 @@ function NotificationDisplay(props) {
 
     }, [props.message])
 
+    const handleClose = (event, reason) => {
+        if (reason === 'clickaway')
+            return;
+        setOpen(false);
+        props.reset()
+    }
     return (
         <div>
             {props.message === null ? '' :
-                <Snackbar open={open} autoHideDuration={3000} onClose={() => { setOpen(false); props.reset() }}>
-                    <Alert onClose={() => { setOpen(false); }} severity={(props.type).toLowerCase()}>
+                <Snackbar open={open} autoHideDuration={3000} onClose={(event, reason) => handleClose(event, reason)}>
+                    <Alert onClose={(event, reason) => handleClose(event, reason)} severity={(props.type).toLowerCase()}>
                         {props.message}
                     </Alert>
                 </Snackbar>

@@ -5,23 +5,32 @@ import Button from '@material-ui/core/Button'
 import Grid from '@material-ui/core/Grid'
 import NavBar from '../components/NavBar'
 import Footer from '../components/Footer';
+import Container from '@material-ui/core/Container';
+import { makeStyles } from '@material-ui/core/styles';
+
+
+const useStyles = makeStyles({
+    body: {
+        backgroundImage: `url(${Background})`, backgroundPosition: 'center',
+        backgroundSize: 'cover',
+        backgroundRepeat: 'no-repeat', width: '100%', height: '1000px'
+    }
+});
+
 
 export default function HomePage(props) {
+    const classess = useStyles();
 
     return (
         <>
             <NavBar />
-            <section style={{
-                backgroundImage: `url(${Background})`, backgroundPosition: 'center',
-                backgroundSize: 'cover',
-                backgroundRepeat: 'no-repeat', width: '100%', height: '1000px'
-            }}>
-                <Grid container justify="center" direction='column' alignItems='center'>
-                    <Grid item xs>
+            <Container className={classess.body}  >
+                <Grid container justify="center" direction='column' alignItems='center' md={12}>
+                    <Grid item xs={10} md={12}>
                         <Typography variant="h3" style={{ color: 'white', paddingTop: 100 }}>SOMETHING COOL <span style={{ color: '#050A30' }}>IS HERE</span></Typography>
                     </Grid>
-                    <Grid item xs>
-                        <Typography variant='h6' style={{ color: 'white', width: 550, margin: '30px 0' }}>
+                    <Grid item xs={10} md={6}>
+                        <Typography variant='h6' style={{ color: 'white', margin: '30px 0' }}>
                             Socializer is a tool that helps you stay off your phone. This app scrapes the data for you and
                             then uses Artificial Intelligence to process it, sounds cool? Well it is. But we're per invite
                             only, sorry bud. Got an invitation? Log in, dear sir.
@@ -34,7 +43,7 @@ export default function HomePage(props) {
                     </Grid>
                 </Grid>
 
-            </section>
+            </Container>
             <Footer />
         </>
     )

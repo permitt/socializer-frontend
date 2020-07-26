@@ -27,12 +27,32 @@ class AuthService extends ApiService {
     }
 
     getInstagramUser = () => {
+        const jwt = JSON.parse(localStorage.getItem('user'));
+        let decoded;
+        try {
+            console.log("NOPEDEKORIDAN ", jwt);
 
+            decoded = jwt_decode(jwt.access);
+            console.log("DEKORIDAN ", decoded);
+
+        } catch (error) {
+            return null;
+        }
+
+        return decoded.instagramUser;
     }
 
     getInstagramPassword = () => {
         const jwt = JSON.parse(localStorage.getItem('user'));
+        let decoded;
+        try {
+            decoded = jwt_decode(jwt.access);
 
+        } catch (error) {
+            return null;
+        }
+
+        return decoded.instagramUser;
 
     }
 
@@ -54,7 +74,7 @@ class AuthService extends ApiService {
     }
     destroySession = () => {
         localStorage.clear();
-        this.api.removeHeaders(['Authorization']);
+        this.api.removeHeaders(['Authorization', 'JWT']);
     }
 
     createSession = (user) => {

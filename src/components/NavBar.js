@@ -23,6 +23,7 @@ import Settings from '@material-ui/icons/Settings';
 import { withRouter } from 'react-router-dom';
 import { PRIMARY_COLOR, SECONDARY_COLOR } from '../assets/constants';
 import { connect } from 'react-redux';
+import { logoutAction } from '../store/actions/authActions';
 
 const drawerWidth = 240;
 
@@ -160,7 +161,7 @@ function NavBar(props) {
                             <ListItemText primary={'Settings'} />
                         </ListItem>
 
-                        <ListItem button key={'Log Out'}>
+                        <ListItem onClick={() => props.logout()} button key={'Log Out'}>
                             <ListItemIcon><ExitToApp /></ListItemIcon>
                             <ListItemText primary={'Log Out'} />
                         </ListItem>
@@ -190,4 +191,8 @@ const mapStateToProps = state => ({
     isAuthenticated: state.auth.isAuthenticated
 });
 
-export default withRouter(connect(mapStateToProps)(NavBar));
+const mapDispatchToProps = {
+    logout: logoutAction
+}
+
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(NavBar));

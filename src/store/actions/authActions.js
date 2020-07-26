@@ -1,14 +1,19 @@
-import { LOGIN, LOGGED_IN } from './actionTypes';
+import { LOGIN, LOGOUT, AUTH_USER } from './actionTypes';
 
 export const loginAction = payload => {
     return {
         type: LOGIN,
         payload
     }
-}
+};
 
-export const loggedInAction = () => {
+export const logoutAction = () => ({
+    type: LOGOUT
+});
+
+export const authUser = (payload) => {
     return {
-        type: LOGGED_IN
+        type: AUTH_USER,
+        payload
     }
-}
+};

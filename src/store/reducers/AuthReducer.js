@@ -1,17 +1,17 @@
-import { LOGGED_IN } from "../actions/actionTypes"
+import { AUTH_USER } from "../actions/actionTypes"
 import authService from "../../services/AuthService"
 
 const initialState = {
     isAuthenticated: authService.isAuthenticated(),
-    instagramUser: null,
-    instagramPassword: null,
+    instagramUser: authService.getInstagramUser(),
+    instagramPassword: authService.getInstagramPassword(),
 
 }
 
 export default (state = initialState, action) => {
     switch (action.type) {
-        case LOGGED_IN:
-            return { ...state, isAuthenticated: true }
+        case AUTH_USER:
+            return { ...state, isAuthenticated: action.payload }
         default:
             return state
     }
