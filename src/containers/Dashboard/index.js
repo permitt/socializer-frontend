@@ -8,7 +8,7 @@ import { withFormikField } from '../../utils';
 import { connect } from 'react-redux';
 import Footer from '../../components/Footer';
 import AddInstagram from '../AddInstagram';
-
+import AddFriend from '../AddFriend';
 
 const FormikTextField = withFormikField(TextField);
 
@@ -25,13 +25,12 @@ function Dashboard(props) {
                 container
                 component={Paper}
                 direction="column"
-                justify="center"
                 xs={10}
                 md={10}
                 alignItems="center"
                 style={{ margin: '0 auto', marginTop: 100, minHeight: '100vh' }}
             >
-                {props.instagram ? '' : <AddInstagram />}
+                {props.instagram ? <h4>PICKEEE</h4> : <AddInstagram />}
 
 
             </Grid>

@@ -21,7 +21,7 @@ function NotificationDisplay(props) {
     return (
         <div>
             {props.message === null ? '' :
-                <Snackbar open={open} autoHideDuration={3000} onClose={(event, reason) => handleClose(event, reason)}>
+                <Snackbar open={open} autoHideDuration={2000} onClose={(event, reason) => handleClose(event, reason)}>
                     <Alert onClose={(event, reason) => handleClose(event, reason)} severity={(props.type).toLowerCase()}>
                         {props.message}
                     </Alert>

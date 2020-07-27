@@ -26,7 +26,7 @@ function AddInstagram(props) {
 
     return (
 
-        <Grid item xs={10} md={6} style={{ marginTop: -150 }}>
+        <Grid item xs={10} md={6} style={{ marginTop: 50 }} >
 
             <Formik
                 initialValues={{ username: '', password: '' }}
@@ -47,7 +47,7 @@ function AddInstagram(props) {
                                 ACCEPT the terms below. But yeah, you'll read it, suuuure..
                             </Typography>}
 
-                            {progress && <LinearProgress />}
+                            {progress && <LinearProgress style={{ marginTop: 10 }} />}
 
                         </Grid>
                         <Grid item xs={12}>

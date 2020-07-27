@@ -6,6 +6,7 @@ import HomePage from '../../Pages/HomePage';
 import LoginPage from '../../Pages/LoginPage';
 import { HOME, LOGIN, DASHBOARD, ADD, SETTINGS } from '../../assets/routes';
 import Dashboard from '../../containers/Dashboard';
+import AddFriend from '../../containers/AddFriend';
 
 
 export default function Routes() {
@@ -13,7 +14,7 @@ export default function Routes() {
         <Switch>
             <PublicRoute path={HOME} component={HomePage} exact />
             <PublicRoute path={LOGIN} component={LoginPage} exact />
-            <PrivateRoute path={ADD} component={''} />
+            <PrivateRoute path={ADD} component={AddFriend} />
             <PrivateRoute path={DASHBOARD} component={Dashboard} exact />
             <PrivateRoute path={SETTINGS} component={''} />
 

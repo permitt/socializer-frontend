@@ -12,7 +12,13 @@ export function* login({ payload }) {
         yield put(newSuccess('Logged in successfuly'));
         yield put(authUser(true));
     } catch (error) {
-        yield put(newError(error.response.data.detail));
+        console.log(error)
+        if (error.response !== undefined) {
+            yield put(newError(error.response.data.detail));
+        }
+        else {
+            yield put(newError('Couldn\'t connect to the server'));
+        }
 
     }
 }

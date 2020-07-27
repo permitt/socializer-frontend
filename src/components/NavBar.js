@@ -11,6 +11,7 @@ import Divider from '@material-ui/core/Divider';
 import IconButton from '@material-ui/core/IconButton';
 import MenuIcon from '@material-ui/icons/Menu';
 import MoneyOff from '@material-ui/icons/MoneyOff';
+import AddCircle from '@material-ui/icons/AddCircle';
 import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
 import ChevronRightIcon from '@material-ui/icons/ChevronRight';
 import ListItem from '@material-ui/core/ListItem';
@@ -24,6 +25,7 @@ import { withRouter } from 'react-router-dom';
 import { PRIMARY_COLOR, SECONDARY_COLOR } from '../assets/constants';
 import { connect } from 'react-redux';
 import { logoutAction } from '../store/actions/authActions';
+import { ADD, DASHBOARD } from '../assets/routes';
 
 const drawerWidth = 240;
 
@@ -145,10 +147,14 @@ function NavBar(props) {
 
                 {props.isAuthenticated ? <>
                     <List>
+                        <ListItem onClick={() => props.history.push(ADD)} button key={'Add a Friend'}>
+                            <ListItemIcon><AddCircle /></ListItemIcon>
+                            <ListItemText primary={'Add a Friend'} />
+                        </ListItem>
 
-                        <ListItem button key={'Scraped Posts'}>
+                        <ListItem onClick={() => props.history.push(DASHBOARD)} button key={'Following'}>
                             <ListItemIcon><PhotoLibrary /></ListItemIcon>
-                            <ListItemText primary={'Scraped Posts'} />
+                            <ListItemText primary={'Following'} />
                         </ListItem>
 
                     </List>

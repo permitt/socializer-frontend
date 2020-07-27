@@ -10,3 +10,8 @@ export const DELETE_POST = 'DELETE_POST';
 export const ERROR = 'ERROR';
 export const SUCCESS = 'SUCCESS';
 export const RESET_MESSAGE = 'RESET_MESSAGE';
+
+export const GET_FRIEND = 'GET_FRIEND';
+export const POST_FRIEND = 'POST_FRIEND';
+export const DELETE_FRIEND = 'DELETE_FRIEND';
+export const PUT_FRIEND = 'PUT_FRIEND';
