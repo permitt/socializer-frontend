@@ -13,6 +13,17 @@ class FriendService extends ApiService {
         return data;
     }
 
+    getFriends = async () => {
+        const { data } = await this.apiClient.get(ENDPOINTS.FRIEND);
+        console.log(" PRIJATELJI ", data);
+        return data;
+    }
+
+    deleteFriend = async payload => {
+        const { data } = await this.apiClient.delete(`${ENDPOINTS.FRIEND}${payload}/`);
+        return data;
+    }
+
 }
 
 const friendService = new FriendService();

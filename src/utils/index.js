@@ -1,6 +1,6 @@
 import React from 'react'
 import { ErrorMessage } from 'formik';
-
+import { moment } from 'moment';
 
 export function withFormikField(Component) {
     return ({ field, form, customErrorMessageValues = {}, ...props }) => (
@@ -18,4 +18,15 @@ export function withFormikField(Component) {
             }
         />
     );
+}
+
+export function formatDate(prevDate) {
+
+    const months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+
+    const date = new Date(prevDate);
+    const month = months[date.getMonth()].slice(0, 3);
+
+    console.log(date, '   je novi DATUMXXSAdS');
+    return `${date.getHours()}:${date.getMinutes()}, ${date.getDate()} ${month} ${date.getFullYear()}`;
 }

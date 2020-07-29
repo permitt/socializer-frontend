@@ -1,4 +1,5 @@
 import Background from '../assets/background-image.jpg'
+import { PRIMARY_COLOR } from './constants';
 
 export const homePageStyle = {
     body: {
@@ -8,8 +9,7 @@ export const homePageStyle = {
     },
     button: {
         "&:hover": {
-            background: "#7EC8E3",
-            color: "#050A30"
+            background: PRIMARY_COLOR,
         }, fontSize: '18px', padding: '20px 40px', marginTop: 10, backgroundColor: '#000C66', opacity: '90%'
     }
 };  

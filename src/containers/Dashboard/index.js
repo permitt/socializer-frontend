@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import Typography from '@material-ui/core/Typography';
 import NavBar from '../../components/NavBar';
 import { Paper, Grid, Button, TextField, Divider, Container } from '@material-ui/core';
@@ -9,7 +9,8 @@ import { connect } from 'react-redux';
 import Footer from '../../components/Footer';
 import AddInstagram from '../AddInstagram';
 import AddFriend from '../AddFriend';
-
+import Following from '../Following/Following';
+import FriendPosts from '../FriendPosts/FriendPosts';
 const FormikTextField = withFormikField(TextField);
 
 function Dashboard(props) {
@@ -30,7 +31,8 @@ function Dashboard(props) {
                 alignItems="center"
                 style={{ margin: '0 auto', marginTop: 100, minHeight: '100vh' }}
             >
-                {props.instagram ? <h4>PICKEEE</h4> : <AddInstagram />}
+                {props.instagram ? <Following />
+                    : <AddInstagram />}
 
 
             </Grid>
