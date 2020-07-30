@@ -1,7 +1,7 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import {
     Grid, Card, Avatar, CardMedia, CardHeader, CardContent, CardActions, makeStyles,
-    FormControlLabel, FormGroup, Switch, Typography, IconButton, Button
+    FormControlLabel, FormGroup, Switch, Typography, IconButton, Button, Dialog, DialogTitle, DialogActions
 } from '@material-ui/core';
 import { connect } from 'react-redux';
 import { getFriendsAction, deleteFriendAction } from '../../store/actions/friendActions';
@@ -11,7 +11,7 @@ import { formatDate } from '../../utils';
 
 
 function Following(props) {
-
+    const [deleteState, setDeleteState] = useState({ open: false, id: '' });
     useEffect(() => {
         props.getFriendsAction();
     }, [])
@@ -45,7 +45,7 @@ function Following(props) {
                             <FormGroup row alignItems='center'>
                                 <FormControlLabel
                                     control={<Switch
-                                        checked={true}
+                                        checked={friend.activeStory}
                                         onChange={() => { }}
                                         name="checkedStory"
                                         color="primary"
@@ -54,7 +54,7 @@ function Following(props) {
 
                                 <FormControlLabel control={
                                     <Switch
-                                        checked={true}
+                                        checked={friend.activePosts}
                                         onChange={() => { }}
                                         color="primary"
                                         name="checkedPost"
@@ -81,7 +81,7 @@ function Following(props) {
 
                         <Grid container justify='center' style={{ marginBottom: 10 }}>
                             <Button onClick={() => props.history.push(`${DASHBOARD}/${friend.username}`)} color='primary'>VIEW POSTS</Button>
-                            <Button onClick={() => props.deleteFriend(friend.username)} color='secondary'>UNFRIEND</Button>
+                            <Button onClick={() => setDeleteState({ open: true, id: friend.username })} color='secondary'>UNFRIEND</Button>
                         </Grid>
 
                     </Card>
@@ -90,6 +90,21 @@ function Following(props) {
             ))}
 
 
+            <Dialog
+                open={deleteState.open}
+                onClose={() => setDeleteState({ open: false })}
+                aria-labelledby="alert-dialog-title"
+                aria-describedby="alert-dialog-description"
+            >
+                <DialogTitle>
+                    <Typography>Are you sure you want to delete @{deleteState.id}?</Typography>
+                </DialogTitle>
+
+                <DialogActions>
+                    <Button onClick={() => setDeleteState({ open: false, id: '' })}>Cancel</Button>
+                    <Button color="primary" autoFocus onClick={() => { props.deleteFriend(deleteState.id); setDeleteState({ open: false }) }}>Confirm</Button>
+                </DialogActions>
+            </Dialog>
 
 
         </Grid >
@@ -102,7 +117,8 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = {
     getFriendsAction,
-    deleteFriend: deleteFriendAction
+    deleteFriend: deleteFriendAction,
+
 }
 
 export default withRouter(connect(mapStateToProps, mapDispatchToProps)(Following));

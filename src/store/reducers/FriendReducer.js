@@ -10,7 +10,7 @@ export default (state = initialState, action) => {
         case SET_FRIENDS:
             return { ...state, following: action.payload }
         case DELETE_FRIEND:
-            return { ...state, following: state.following.filter(friend => friend.username !== action.payload) }
+            return { following: state.following.filter(friend => friend.username !== action.payload) }
         default:
             return state
     }

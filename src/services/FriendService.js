@@ -24,6 +24,12 @@ class FriendService extends ApiService {
         return data;
     }
 
+    putFriend = async payload => {
+        const { data } = await this.apiClient.put(`${ENDPOINTS.FRIEND}${payload.username}/`, payload);
+        return data;
+
+    }
+
 }
 
 const friendService = new FriendService();

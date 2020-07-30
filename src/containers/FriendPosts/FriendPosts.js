@@ -1,8 +1,8 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import {
     Grid, Card, Avatar, CardMedia, CardHeader, CardContent, CardActions, makeStyles,
     FormControlLabel, FormGroup, Switch, Typography, IconButton, Button, Accordion, AccordionSummary, AccordionDetails,
-    Paper,
+    Paper, Dialog, DialogActions, DialogTitle
 } from '@material-ui/core';
 import ArrowBackIcon from '@material-ui/icons/ArrowBack';
 import { connect } from 'react-redux';
@@ -15,7 +15,7 @@ import { DASHBOARD } from '../../assets/routes';
 import { PRIMARY_COLOR } from '../../assets/constants';
 
 function Following(props) {
-
+    const [deleteState, setDeleteState] = useState({ open: false, id: '' });
     useEffect(() => {
         props.getPostsAction(props.match.params.user);
     }, [])
@@ -69,7 +69,7 @@ function Following(props) {
                                                 </CardContent>
 
                                                 <Grid container justify='center' style={{ marginBottom: 10 }}>
-                                                    <Button onClick={() => props.deletePost(Post.id)} color='secondary'>DELETE</Button>
+                                                    <Button onClick={() => setDeleteState({ open: true, id: Post.id })} color='secondary'>DELETE</Button>
                                                 </Grid>
 
                                             </Card>
@@ -107,7 +107,7 @@ function Following(props) {
                                                 </CardContent>
 
                                                 <Grid container justify='center' style={{ marginBottom: 10 }}>
-                                                    <Button onClick={() => props.deletePost(Post.id)} color='secondary'>DELETE</Button>
+                                                    <Button onClick={() => setDeleteState({ open: true, id: Post.id })} color='secondary'>DELETE</Button>
                                                 </Grid>
 
                                             </Card>
@@ -124,6 +124,25 @@ function Following(props) {
 
                 </Grid>
             </Grid>
+
+
+            <Dialog
+                open={deleteState.open}
+                onClose={() => setDeleteState({ open: false })}
+                aria-labelledby="alert-dialog-title"
+                aria-describedby="alert-dialog-description"
+            >
+                <DialogTitle>
+                    <Typography>Are you sure you want to delete this post?</Typography>
+                </DialogTitle>
+
+                <DialogActions>
+                    <Button onClick={() => setDeleteState({ open: false, id: '' })}>Cancel</Button>
+                    <Button color="primary" autoFocus onClick={() => { props.deletePost(deleteState.id); setDeleteState({ open: false }) }}>Confirm</Button>
+                </DialogActions>
+            </Dialog>
+
+
             <Footer />
         </div >
 

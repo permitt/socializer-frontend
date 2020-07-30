@@ -1,4 +1,4 @@
-import { newError } from "../actions/notificationActions";
+import { newError, newSuccess } from "../actions/notificationActions";
 import { call, put } from 'redux-saga/effects';
 import postService from "../../services/PostService";
 import { setPostsAction } from '../actions/postActions';
@@ -14,6 +14,17 @@ export function* getPosts({ payload }) {
 
     } catch (error) {
         yield put(newError(error.response.data.detail));
-        //yield put(push(DASHBOARD));
+        yield put(push(DASHBOARD));
+    }
+}
+
+export function* deletePost({ payload }) {
+    try {
+        const response = yield call(postService.deletePost, payload);
+
+        yield put(newSuccess("Post deleted successfuly!"));
+
+    } catch (error) {
+        yield put(newError(error.response.data.detail));
     }
 }

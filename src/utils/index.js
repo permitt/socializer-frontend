@@ -27,6 +27,11 @@ export function formatDate(prevDate) {
     const date = new Date(prevDate);
     const month = months[date.getMonth()].slice(0, 3);
 
-    console.log(date, '   je novi DATUMXXSAdS');
+    const dateNow = new Date();
+
+    if ((dateNow - date) / 60 / 1000 < 30)
+        return 'scraping...';
+
+
     return `${date.getHours()}:${date.getMinutes()}, ${date.getDate()} ${month} ${date.getFullYear()}`;
 }

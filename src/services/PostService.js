@@ -12,6 +12,11 @@ class PostService extends ApiService {
         const { data } = await this.apiClient.get(`${ENDPOINTS.POST_USER}${params}`);
         return data;
     }
+
+    deletePost = async params => {
+        const { data } = await this.apiClient.delete(`${ENDPOINTS.POST}${params}`);
+        return data;
+    }
 }
 
 const postService = new PostService();

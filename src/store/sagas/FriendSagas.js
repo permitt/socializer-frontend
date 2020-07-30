@@ -36,3 +36,13 @@ export function* deleteFriend({ payload }) {
         yield put(newError(error.response.data.detail));
     }
 }
+
+export function* putFriend({ payload }) {
+    try {
+        const response = yield call(FriendService.putFriend, payload);
+
+        yield put(newSuccess('Changed successfuly'));
+    } catch (error) {
+        yield put(newError(error.response.data.detail));
+    }
+}
