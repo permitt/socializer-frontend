@@ -1,8 +1,13 @@
 import React, { useEffect, useState } from 'react'
 import {
     Grid, Card, Avatar, CardMedia, CardHeader, CardContent, CardActions, makeStyles,
+<<<<<<< HEAD
     FormControlLabel, FormGroup, Switch, Typography, IconButton, Button, AccordionSummary, AccordionDetails,
     Paper, Dialog, DialogActions, DialogTitle, Accordion
+=======
+    FormControlLabel, FormGroup, Switch, Typography, IconButton, Button, Accordion, AccordionSummary, AccordionDetails,
+    Paper, Dialog, DialogActions, DialogTitle
+>>>>>>> f9d8df14f49f65aebf561d0009807f6fc641074c
 } from '@material-ui/core';
 import ArrowBackIcon from '@material-ui/icons/ArrowBack';
 import { connect } from 'react-redux';

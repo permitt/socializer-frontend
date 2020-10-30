@@ -19,12 +19,21 @@ export default function HomePage(props) {
     return (
         <>
             <NavBar />
+<<<<<<< HEAD
             <div className={classess.body}  >
                 <Grid container justify="center" direction='column' alignItems='center' md={12} >
                     <Grid item xs={10} md={12} >
                         <Typography variant="h3" style={{ color: 'white', paddingTop: 100 }}>SOMETHING COOL <span style={{ color: '#050A30' }}>IS HERE</span></Typography>
                     </Grid>
                     <Grid item xs={10} md={6} lg={4}>
+=======
+            <Container className={classess.body}  >
+                <Grid container justify="center" direction='column' alignItems='center' md={12}>
+                    <Grid item xs={10} md={12}>
+                        <Typography variant="h3" style={{ color: 'white', paddingTop: 100 }}>SOMETHING COOL <span style={{ color: '#050A30' }}>IS HERE</span></Typography>
+                    </Grid>
+                    <Grid item xs={10} md={6}>
+>>>>>>> f9d8df14f49f65aebf561d0009807f6fc641074c
                         <Typography variant='h6' style={{ color: 'white', margin: '30px 0' }}>
                             Socializer is a tool that helps you stay off your phone. This app scrapes the data for you and
                             then uses Artificial Intelligence to process it, sounds cool? Well it is. But we're per invite
@@ -38,7 +47,11 @@ export default function HomePage(props) {
                     </Grid>
                 </Grid>
 
+<<<<<<< HEAD
             </div>
+=======
+            </Container>
+>>>>>>> f9d8df14f49f65aebf561d0009807f6fc641074c
             <Footer />
         </>
     )
