@@ -63,12 +63,8 @@ class AuthService extends ApiService {
 
     setAuthorizationHeader = token => {
         this.api.attachHeaders({
-<<<<<<< HEAD
             Authorization: `JWT   ${token}`,
             'content-type': 'application/json'
-=======
-            Authorization: 'JWT ' + token
->>>>>>> f9d8df14f49f65aebf561d0009807f6fc641074c
         });
     }
     destroySession = () => {

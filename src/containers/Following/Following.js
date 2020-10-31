@@ -5,11 +5,7 @@ import {
 } from '@material-ui/core';
 import { connect } from 'react-redux';
 import { getFriendsAction, deleteFriendAction } from '../../store/actions/friendActions';
-<<<<<<< HEAD
 import { DASHBOARD, ADD } from '../../assets/routes';
-=======
-import { DASHBOARD } from '../../assets/routes';
->>>>>>> f9d8df14f49f65aebf561d0009807f6fc641074c
 import { withRouter } from 'react-router-dom';
 import { formatDate } from '../../utils';
 
@@ -22,7 +18,6 @@ function Following(props) {
 
 
     return (
-<<<<<<< HEAD
         <Grid container md={12} xs={12} direction='column' alignItems='center'  spacing={3} style={{ margin: '15px 0' }}>
             {!props.friends ? <Typography variant='h3' style={{ textAlign: 'center' }}>Loading...</Typography>
                 : props.friends.length === 0 ?
@@ -35,14 +30,7 @@ function Following(props) {
                         <Button onClick={() => props.history.push(ADD)} color='primary' variant='outlined' style={{width:100, height:60}}>ADD FRIEND</Button>
                     </Grid>
                     </>
-=======
-        <Grid container md={12} xs={12} alignItems='center' spacing={3} style={{ margin: '15px 0' }}>
-            {!props.friends ? <Typography variant='h3' style={{ textAlign: 'center' }}>Loading...</Typography>
-                : props.friends.length === 0 ?
-                    <Grid item md={12} xs={12}>
-                        <Typography variant='h3' style={{ textAlign: 'center' }}>Awww, you don't have any friends :( </Typography>
-                    </Grid>
->>>>>>> f9d8df14f49f65aebf561d0009807f6fc641074c
+
                     : <><Grid item md={10} xs={12} >
                         <Typography variant='h4' style={{ textAlign: 'left' }}>Friends you're following... </Typography>
                     </Grid>

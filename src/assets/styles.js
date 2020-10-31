@@ -5,15 +5,11 @@ export const homePageStyle = {
     body: {
         backgroundImage: `url(${Background})`, backgroundPosition: 'center',
         backgroundSize: 'cover',
-<<<<<<< HEAD
         backgroundRepeat: 'no-repeat',        
         height: '1200px',
         width:'100%',
         padding:0,
         
-=======
-        backgroundRepeat: 'no-repeat', width: '100%', height: '1000px'
->>>>>>> f9d8df14f49f65aebf561d0009807f6fc641074c
     },
     button: {
         "&:hover": {
