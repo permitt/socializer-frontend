@@ -8,6 +8,7 @@ import { HOME, LOGIN, DASHBOARD, DASHBOARD_USER, ADD, SETTINGS } from '../../ass
 import Dashboard from '../../containers/Dashboard';
 import AddFriend from '../../containers/AddFriend';
 import FriendPosts from '../../containers/FriendPosts/FriendPosts';
+import AccountSettings from '../../containers/AccountSettings';
 
 
 export default function Routes() {
@@ -18,7 +19,7 @@ export default function Routes() {
             <PrivateRoute path={ADD} component={AddFriend} />
             <PrivateRoute path={DASHBOARD} component={Dashboard} exact />
             <PrivateRoute path={DASHBOARD_USER} component={FriendPosts} exact />
-            <PrivateRoute path={SETTINGS} component={''} />
+            <PrivateRoute path={SETTINGS} component={AccountSettings} />
 
         </Switch>
     )
