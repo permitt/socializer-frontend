@@ -34,7 +34,7 @@ export default function AboutUs(props) {
 
                     </Grid>
                     <Grid item xs>
-                        <Button className={classess.button} onClick={() => props.history.push(LOGIN)} variant="contained" color="secondary" >LOGIN</Button>
+                        <Button className={classess.button} onClick={() => {}} variant="contained" color="secondary" >CONTACT US</Button>
                     </Grid>
                 </Grid>
 

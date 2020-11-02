@@ -32,7 +32,7 @@ export default function BegInvite(props) {
 
                     </Grid>
                     <Grid item xs>
-                        <Button className={classess.button} onClick={() => props.history.push(LOGIN)} variant="contained" color="secondary" >DONATE</Button>
+                        <Button className={classess.button} onClick={() => {}} variant="contained" color="secondary" >DONATE</Button>
                     </Grid>
                 </Grid>
 
