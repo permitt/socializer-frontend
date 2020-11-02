@@ -25,7 +25,7 @@ import { withRouter } from 'react-router-dom';
 import { PRIMARY_COLOR, SECONDARY_COLOR } from '../assets/constants';
 import { connect } from 'react-redux';
 import { logoutAction } from '../store/actions/authActions';
-import { ADD, DASHBOARD, SETTINGS } from '../assets/routes';
+import { ABOUT_US, ADD, DASHBOARD, SETTINGS, BEG_INVITE } from '../assets/routes';
 
 const drawerWidth = 240;
 
@@ -177,12 +177,12 @@ function NavBar(props) {
                     <List>
 
 
-                        <ListItem button key={'About'}>
+                        <ListItem button onClick={() => props.history.push(ABOUT_US)} key={'About'}>
                             <ListItemIcon><Info /></ListItemIcon>
                             <ListItemText primary={'About'} />
                         </ListItem>
 
-                        <ListItem button key={'Beg for an invite'}>
+                        <ListItem button onClick={() => props.history.push(BEG_INVITE)} key={'Beg for an invite'}>
                             <ListItemIcon><MoneyOff /></ListItemIcon>
                             <ListItemText primary={'Beg For An Invite'} />
                         </ListItem>
