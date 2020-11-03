@@ -26,7 +26,8 @@ export default function BegInvite(props) {
                     </Grid>
                     <Grid item xs={10} md={6} lg={4}>
                         <Typography variant='h6' style={{ color: 'white', margin: '30px 0' }}>
-                            
+                            Well you can only donate, and then by random chance we will choose a winner. We will as well send the login details via our 
+                        corporate tooth fairy, and you may find the credentials below your pillow any night, after you donate of course!
                     </Typography>
 
 

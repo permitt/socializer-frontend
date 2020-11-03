@@ -26,9 +26,9 @@ export default function AboutUs(props) {
                     </Grid>
                     <Grid item xs={10} md={6} lg={4}>
                         <Typography variant='h6' style={{ color: 'white', margin: '30px 0' }}>
-                            Socializer is a tool that helps you stay off your phone. This app scrapes the data for you and
-                            then uses Artificial Intelligence to process it, sounds cool? Well it is. But we're per invite
-                            only, sorry bud. Got an invitation? Log in, dear sir.
+                            Why did we make this app? Honestly? We got no clue. JK, I wanted to test out Django and React stack, task scheduling and queues as well as 
+                            combining aaaaalll of that with some weird magic (CNNs). I am enrolled at the senior year of Software Engineering and IT, and i want to be 
+                            a Machine Learning engineer + Full Stack Web ? Impossible? Most likely...
                     </Typography>
 
 
