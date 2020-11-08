@@ -21,17 +21,7 @@ export default function BegInvite(props) {
             <NavBar />
             <div className={classess.body}  >
                 <Grid container justify="center" direction='column' alignItems='center' md={12} >
-                    <Grid item xs={10} md={12} >
-                        <Typography variant="h3" style={{ color: 'white', paddingTop: 100 }}>NOT GONNA <span style={{ color: '#050A30' }}>HAPPEN</span></Typography>
-                    </Grid>
-                    <Grid item xs={10} md={6} lg={4}>
-                        <Typography variant='h6' style={{ color: 'white', margin: '30px 0' }}>
-                            Well you can only donate, and then by random chance we will choose a winner, who gets the credentials. We will send the login details via our 
-                        corporate tooth fairy, and you may find the credentials below your pillow any night, after you donate of course!
-                    </Typography>
-
-
-                    </Grid>
+                    
                     <Grid item xs>
                         <Button className={classess.button} onClick={() => {}} variant="contained" color="secondary" >Donate</Button>
                     </Grid>
