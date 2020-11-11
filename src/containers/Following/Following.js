@@ -18,7 +18,7 @@ function Following(props) {
 
 
     return (
-        <Grid container md={12} xs={12} direction='column' alignItems='center'  spacing={3} style={{ margin: '15px 0' }}>
+        <Grid container md={12} xs={12} alignItems='center'  spacing={3} style={{ margin: '15px 0' }}>
             {!props.friends ? <Typography variant='h3' style={{ textAlign: 'center' }}>Loading...</Typography>
                 : props.friends.length === 0 ?
                     <>
@@ -26,7 +26,7 @@ function Following(props) {
                         <Typography variant='h3' style={{ textAlign: 'center' }}>Awww, you don't have any friends :( </Typography>
                     </Grid>
 
-                    <Grid item md={12} xs={12}  style={{marginTop:20, justifyContent:'center'}}>
+                    <Grid item md={12} xs={12}  style={{marginTop:20, justify:'center', textAlign:'center'}}>
                         <Button onClick={() => props.history.push(ADD)} color='primary' variant='outlined' style={{width:100, height:60}}>ADD FRIEND</Button>
                     </Grid>
                     </>
