@@ -1,4 +1,4 @@
-import { LOGIN, LOGOUT, AUTH_USER, ADD_INSTAGRAM, AUTH_INSTAGRAM } from './actionTypes';
+import { LOGIN, LOGOUT, AUTH_USER, ADD_INSTAGRAM, AUTH_INSTAGRAM, CHANGE_PASSWORD } from './actionTypes';
 
 export const loginAction = payload => {
     return {
@@ -6,6 +6,11 @@ export const loginAction = payload => {
         payload
     }
 };
+
+export const changePassword = payload => ({
+    type: CHANGE_PASSWORD,
+    payload
+});
 
 export const logoutAction = () => ({
     type: LOGOUT

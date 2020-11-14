@@ -54,6 +54,7 @@ function Following(props) {
                                     control={<Switch
                                         checked={friend.activeStory}
                                         onChange={() => { }}
+                                        // DODAJ ODJE DA SALJE PUT REQUEST
                                         name="checkedStory"
                                         color="primary"
                                         inputProps={{ 'aria-label': 'secondary checkbox' }}
@@ -62,6 +63,7 @@ function Following(props) {
                                 <FormControlLabel control={
                                     <Switch
                                         checked={friend.activePosts}
+                                        // DODAJ ODJE DA SALJE PUT REQUEST
                                         onChange={() => { }}
                                         color="primary"
                                         name="checkedPost"

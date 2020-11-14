@@ -41,3 +41,13 @@ export function* addInstagram({ payload }) {
         yield put(newError(error.response.data.detail));
     }
 }
+
+export function* changePasswordSaga({payload}){
+    try{
+        const res = yield call(authService.changePassword, payload);
+        yield put(newSuccess('Password updated successfuly'));
+
+    }catch(error){
+        yield put(newError(error.response.data.detail));
+    }
+}

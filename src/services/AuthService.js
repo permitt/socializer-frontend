@@ -4,6 +4,7 @@ const ENDPOINTS = {
     LOGIN: 'token/obtain/',
     LOGOUT: '',
     INSTAGRAM: 'api/instagram/',
+    PASSWORD_CHANGE: 'api/user/password/',
 }
 
 class AuthService extends ApiService {
@@ -49,6 +50,21 @@ class AuthService extends ApiService {
         return decoded.instagram;
     }
 
+    getEmail = () => {
+        const jwt = JSON.parse(localStorage.getItem('user'));
+        let decoded;
+        try {
+            console.log("NOPEDEKORIDAN ", jwt);
+
+            decoded = jwt_decode(jwt.access);
+            console.log("DEKORIDAN ", decoded);
+
+        } catch (error) {
+            return null;
+        }
+
+        return decoded.email;
+    }
 
     isExpired = ({ access }) => {
         if (!access)
@@ -82,6 +98,12 @@ class AuthService extends ApiService {
         this.createSession(data);
         return data;
     }
+
+    changePassword = async payload => {
+        const {data} = await this.apiClient.put(ENDPOINTS.PASSWORD_CHANGE, payload);
+        return data;
+    }
+
 
     logout = () => {
         this.destroySession();

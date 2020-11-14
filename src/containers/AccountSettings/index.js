@@ -52,9 +52,10 @@ function AccountSettings(props) {
                 <Grid item xs={10} md={6} style={{ marginTop: 50 }} >
 
                     <Formik
-                        initialValues={{ username: '' }}
+                        initialValues={{ username: props.email, instagram: props.instagram }}
                         validationSchema={Yup.object().shape({
                             username: Yup.string().required('Username is required'),
+                            
                         })
                         }
                         onSubmit={handleSubmit}
@@ -77,8 +78,8 @@ function AccountSettings(props) {
                                         type="text"
                                         name="username"
                                         variant="outlined"
-                                        required
                                         fullWidth
+                                        disabled
                                         label="Email"
                                     />
                                     <Field
@@ -88,20 +89,7 @@ function AccountSettings(props) {
                                         variant="outlined"
                                         required
                                         fullWidth
-                                        label="Password"
-                                    />
-                                    <hr />
-                                </Grid>
-                                <Grid item xs={12}>
-
-                                    <Field
-                                        component={FormikTextField}
-                                        type="text"
-                                        name="username"
-                                        variant="outlined"
-                                        required
-                                        fullWidth
-                                        label="Instagram Email"
+                                        label=" New Password"
                                     />
                                     <Field
                                         component={FormikTextField}
@@ -110,12 +98,10 @@ function AccountSettings(props) {
                                         variant="outlined"
                                         required
                                         fullWidth
-                                        label="Instagram Password"
+                                        label="New Password Again"
                                     />
                                     <hr />
-                                </Grid>
-
-                                <Grid item xs={12}>
+                                    <Grid item xs={12}>
                                     <FormGroup row alignItems='center'>
                                         
 
@@ -128,12 +114,36 @@ function AccountSettings(props) {
                                                 name="checkedEmail"
                                                 inputProps={{ 'aria-label': 'primary checkbox' }}
                                             />}
-                                            label='Notify me via email' labelPlacement='start' />
+                                            label='Email me the new stuff' labelPlacement='start' />
 
                                     </FormGroup>
                                 </Grid>
-                                <Grid container justify='center' style={{ margin: '10px 0px' }}>
+                                    <Grid container justify='center' style={{ margin: '10px 0px' }}>
                                     {!progress ? <Button variant='contained' color='primary' type="submit">SAVE</Button>
+                                        : <CircularProgress />}
+
+                                </Grid>
+                                </Grid>
+                                <Grid item xs={12}>
+                                <Typography variant='h4'>Instagram Account</Typography>
+                                </Grid>
+                                <Grid item xs={12}>
+                                    <Field
+                                        component={FormikTextField}
+                                        type="text"
+                                        name="instagram"
+                                        variant="outlined"
+                                        disabled
+                                        fullWidth
+                                        label="Username"
+                                    />
+                                    
+                   
+                                </Grid>
+
+                                
+                                <Grid container justify='center' style={{ margin: '10px 0px' }}>
+                                    {!progress ? <Button variant='contained' color='secondary' type="submit">DELETE</Button>
                                         : <CircularProgress />}
 
                                 </Grid>
@@ -147,8 +157,9 @@ function AccountSettings(props) {
     )
 }
 
-const mapStateToProps = state => ({
-    notif: state.notification.message
+const mapStateToProps = (state) => ({
+    email: state.auth.email,
+    instagram: state.auth.instagramUser
 });
 
 const mapDispatchToProps = { submit: () => {} };
