@@ -75,6 +75,7 @@ function Following(props) {
                                 <FormControlLabel control={
                                     <Switch
                                         checked={true}
+                                        // Odje isto saljes PUT request, ali ovo nije sacuvano?
                                         onChange={() => { }}
                                         color="secondary"
                                         name="checkedEmail"
