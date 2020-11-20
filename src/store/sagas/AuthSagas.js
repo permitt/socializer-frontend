@@ -42,6 +42,16 @@ export function* addInstagram({ payload }) {
     }
 }
 
+export function* deleteInstagram(){
+    try{
+        const response = yield call(authService.deleteInstagram);
+        yield put(newSuccess('Instagram account removed!'))
+        
+    }catch (e){
+        yield put(newError(e.response.data.detail));
+    }
+}
+
 export function* changePasswordSaga({payload}){
     try{
         const res = yield call(authService.changePassword, payload);

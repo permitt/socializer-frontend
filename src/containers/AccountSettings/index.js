@@ -2,12 +2,12 @@ import React, { useState, useEffect } from 'react'
 import Typography from '@material-ui/core/Typography';
 import NavBar from '../../components/NavBar';
 import Footer from '../../components/Footer';
-import { Paper, Grid, Button, TextField, Divider, Container, FormGroup } from '@material-ui/core';
+import { Paper, Grid, Button, TextField, Divider, Container, FormGroup, Avatar, Dialog, DialogTitle, DialogActions } from '@material-ui/core';
 import { Formik, Form, Field } from 'formik';
 import * as Yup from 'yup';
 import { withFormikField } from '../../utils';
 import { connect } from 'react-redux';
-import { addFriendAction } from '../../store/actions/friendActions';
+import { changePassword } from '../../store/actions/authActions';
 import CircularProgress from '@material-ui/core/CircularProgress';
 import LinearProgress from '@material-ui/core/LinearProgress';
 import Switch from '@material-ui/core/Switch';
@@ -17,14 +17,14 @@ const FormikTextField = withFormikField(TextField);
 
 function AccountSettings(props) {
     const [progress, setProgress] = useState(false);
-    const [state, setState] = React.useState({
-        checkedStory: true,
-        checkedPost: true,
+    const [state, setState] = React.useState({        
         checkedEmail: true
     });
+    const [deleteState, setDeleteState] = useState(false);
 
-    const handleSubmit = ({ username }) => {
-        props.submit({ username, activeStory: state.checkedStory, activePosts: state.checkedPost, emailNotif: state.checkedEmail });
+
+    const handleSubmit = ({ username, password }) => {
+        props.submit({ username, password });
         setProgress(true);
     }
 
@@ -44,28 +44,29 @@ function AccountSettings(props) {
                 container
                 component={Paper}
                 direction="column"
-                xs={10}
-                md={10}
+
+                
                 alignItems="center"
                 style={{ margin: '0 auto', marginTop: 100, minHeight: '100vh' }}
             >
                 <Grid item xs={10} md={6} style={{ marginTop: 50 }} >
 
                     <Formik
-                        initialValues={{ username: props.email, instagram: props.instagram }}
+                        initialValues={{ username: props.email}}
                         validationSchema={Yup.object().shape({
                             username: Yup.string().required('Username is required'),
-                            
+                            password: Yup.string().required('Password is required'),
+                            password2: Yup.string().oneOf([Yup.ref('password'), null], 'Passwords must match')
                         })
                         }
                         onSubmit={handleSubmit}
                     >
                         <Form >
-                            <Grid container spacing={2}>
+                            <Grid container  justify='center'  spacing={4}>
                                 <Grid item xs={12}>
                                     {progress ?
-                                        <Typography variant='h4'>This may take a minute or two...</Typography>
-                                        : <Typography variant='h4'>Settings for you
+                                        <Typography  style={{textAlign:'center'}} variant='h4'>Saving...</Typography>
+                                        : <Typography style={{textAlign:'center'}} variant='h4'>Settings for you
                             </Typography>}
 
                                     {progress && <LinearProgress style={{ marginTop: 10 }} />}
@@ -84,7 +85,7 @@ function AccountSettings(props) {
                                     />
                                     <Field
                                         component={FormikTextField}
-                                        type="text"
+                                        type="password"
                                         name="password"
                                         variant="outlined"
                                         required
@@ -93,8 +94,8 @@ function AccountSettings(props) {
                                     />
                                     <Field
                                         component={FormikTextField}
-                                        type="text"
-                                        name="password"
+                                        type="password"
+                                        name="password2"
                                         variant="outlined"
                                         required
                                         fullWidth
@@ -123,9 +124,40 @@ function AccountSettings(props) {
                                         : <CircularProgress />}
 
                                 </Grid>
-                                </Grid>
+                            </Grid>
+                            </Grid>
+                        </Form>
+
+                    </Formik>
+                    </Grid>
+
+
+
+
+
+
+
+
+
+
+                    <Grid item xs={10} md={6} style={{ marginTop: 50 }} >
+
+                    <Formik
+                                initialValues={{ instagram: props.instagram}}
+                                validationSchema={Yup.object().shape({
+                                    username: Yup.string().required('Username is required'),                                  
+                                })}
+                                onSubmit={() => {}}    >
+                        <Form>
+                            <Grid container  justify='center'  spacing={4}>
                                 <Grid item xs={12}>
-                                <Typography variant='h4'>Instagram Account</Typography>
+                                <Typography  style={{textAlign:'center', marginTop:35}} variant='h4'>Instagram Account</Typography>
+                                </Grid>
+
+
+
+                                <Grid container justify='center'>
+                                    <Avatar src={props.picture} style={{ width: 150, height: 150 }} />
                                 </Grid>
                                 <Grid item xs={12}>
                                     <Field
@@ -140,28 +172,48 @@ function AccountSettings(props) {
                                     
                    
                                 </Grid>
-
-                                
                                 <Grid container justify='center' style={{ margin: '10px 0px' }}>
-                                    {!progress ? <Button variant='contained' color='secondary' type="submit">DELETE</Button>
-                                        : <CircularProgress />}
-
-                                </Grid>
+                                    <Button onClick={() => setDeleteState(true)} variant='contained' color='secondary' type="submit">DELETE</Button>
+                               </Grid>
                             </Grid>
                         </Form>
+
                     </Formik>
-                </Grid >
-            </Grid>
+                    </Grid>
+                    </Grid>
+
+
+            <Dialog
+                open={deleteState}
+                onClose={() => setDeleteState(false)}
+                aria-labelledby="alert-dialog-title"
+                aria-describedby="alert-dialog-description"
+            >
+                <DialogTitle>
+                    <Typography>Are you sure you want to remove your instagram account?</Typography>
+                </DialogTitle>
+
+                <DialogActions>
+                    <Button onClick={() => setDeleteState(false)}>Cancel</Button>
+                    <Button color="primary" autoFocus onClick={() => { setDeleteState(false) }}>Confirm</Button>
+                </DialogActions>
+            </Dialog>
+
+
+
+
             <Footer />
         </div >
     )
 }
 
 const mapStateToProps = (state) => ({
+    notif: state.notification.message,
     email: state.auth.email,
-    instagram: state.auth.instagramUser
+    instagram: state.auth.instagramUser,
+    picture: state.auth.instagramPicture
 });
 
-const mapDispatchToProps = { submit: () => {} };
+const mapDispatchToProps = { submit: changePassword };
 
 export default connect(mapStateToProps, mapDispatchToProps)(AccountSettings);

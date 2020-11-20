@@ -33,6 +33,11 @@ class AuthService extends ApiService {
         return data;
     }
 
+    deleteInstagram = async id => {
+        const {data} = await this.apiClient.delete(`ENDPOINTS.INSTAGRAM/${id}/`);
+        return data;
+    }
+
 
     getInstagramUser = () => {
         const jwt = JSON.parse(localStorage.getItem('user'));
@@ -48,6 +53,19 @@ class AuthService extends ApiService {
         }
 
         return decoded.instagram;
+    }
+
+    getInstagramPicture = () => {
+        const jwt = JSON.parse(localStorage.getItem('user'));
+        let decoded;
+        try {
+            decoded = jwt_decode(jwt.access);
+
+        } catch (error) {
+            return null;
+        }
+
+        return decoded.instagram_picture;
     }
 
     getEmail = () => {
@@ -100,6 +118,7 @@ class AuthService extends ApiService {
     }
 
     changePassword = async payload => {
+        console.log("OVO SAM DOBIO DA SALJEM ", payload);
         const {data} = await this.apiClient.put(ENDPOINTS.PASSWORD_CHANGE, payload);
         return data;
     }

@@ -2,6 +2,7 @@ export const LOGIN = 'LOGIN';
 export const LOGOUT = 'LOGOUT';
 export const AUTH_USER = 'AUTH_USER';
 export const ADD_INSTAGRAM = 'ADD_INSTAGRAM';
+export const DELETE_INSTAGRAM = 'DELETE_INSTAGRAM';
 export const AUTH_INSTAGRAM = 'AUTH_INSTAGRAM';
 export const CHANGE_PASSWORD = 'CHANGE_PASSWORD'
 
