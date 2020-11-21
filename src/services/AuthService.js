@@ -34,6 +34,7 @@ class AuthService extends ApiService {
     }
 
     deleteInstagram = async payload => {
+        
         const {data} = await this.apiClient.delete(`${ENDPOINTS.INSTAGRAM}${payload}/`);
         return data;
     }
@@ -94,7 +95,7 @@ class AuthService extends ApiService {
 
     setAuthorizationHeader = token => {
         this.api.attachHeaders({
-            Authorization: `JWT   ${token}`,
+            Authorization: `JWT ${token}`,
             'content-type': 'application/json'
         });
     }
