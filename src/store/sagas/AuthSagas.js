@@ -42,11 +42,11 @@ export function* addInstagram({ payload }) {
     }
 }
 
-export function* deleteInstagram(){
+export function* deleteInstagram({payload}){
     try{
-        const response = yield call(authService.deleteInstagram);
+        const response = yield call(authService.deleteInstagram, payload);
         yield put(newSuccess('Instagram account removed!'))
-        
+
     }catch (e){
         yield put(newError(e.response.data.detail));
     }

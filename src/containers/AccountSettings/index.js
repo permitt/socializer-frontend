@@ -7,11 +7,12 @@ import { Formik, Form, Field } from 'formik';
 import * as Yup from 'yup';
 import { withFormikField } from '../../utils';
 import { connect } from 'react-redux';
-import { changePassword } from '../../store/actions/authActions';
+import { changePassword, deleteInstagramAction } from '../../store/actions/authActions';
 import CircularProgress from '@material-ui/core/CircularProgress';
 import LinearProgress from '@material-ui/core/LinearProgress';
 import Switch from '@material-ui/core/Switch';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
+import { DELETE_INSTAGRAM } from '../../store/actions/actionTypes';
 
 const FormikTextField = withFormikField(TextField);
 
@@ -195,7 +196,7 @@ function AccountSettings(props) {
 
                 <DialogActions>
                     <Button onClick={() => setDeleteState(false)}>Cancel</Button>
-                    <Button color="primary" autoFocus onClick={() => { setDeleteState(false) }}>Confirm</Button>
+                    <Button color="primary" autoFocus onClick={() => { props.deleteInstagram(props.instagram);setDeleteState(false) }}>Confirm</Button>
                 </DialogActions>
             </Dialog>
 
@@ -214,6 +215,6 @@ const mapStateToProps = (state) => ({
     picture: state.auth.instagramPicture
 });
 
-const mapDispatchToProps = { submit: changePassword };
+const mapDispatchToProps = { submit: changePassword, deleteInstagram: deleteInstagramAction };
 
 export default connect(mapStateToProps, mapDispatchToProps)(AccountSettings);

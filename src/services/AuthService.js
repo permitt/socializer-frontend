@@ -33,8 +33,8 @@ class AuthService extends ApiService {
         return data;
     }
 
-    deleteInstagram = async id => {
-        const {data} = await this.apiClient.delete(`ENDPOINTS.INSTAGRAM/${id}/`);
+    deleteInstagram = async payload => {
+        const {data} = await this.apiClient.delete(`${ENDPOINTS.INSTAGRAM}${payload}/`);
         return data;
     }
 
@@ -43,10 +43,7 @@ class AuthService extends ApiService {
         const jwt = JSON.parse(localStorage.getItem('user'));
         let decoded;
         try {
-            console.log("NOPEDEKORIDAN ", jwt);
-
             decoded = jwt_decode(jwt.access);
-            console.log("DEKORIDAN ", decoded);
 
         } catch (error) {
             return null;
@@ -97,7 +94,7 @@ class AuthService extends ApiService {
 
     setAuthorizationHeader = token => {
         this.api.attachHeaders({
-            Authorization: `JWT ${token}`,
+            Authorization: `JWT   ${token}`,
             'content-type': 'application/json'
         });
     }
