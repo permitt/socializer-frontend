@@ -23,9 +23,9 @@ export const authUser = (payload) => {
     }
 };
 
-export const authInstagramAction = username => ({
+export const authInstagramAction = payload => ({
     type: AUTH_INSTAGRAM,
-    payload: username
+    payload
 })
 
 

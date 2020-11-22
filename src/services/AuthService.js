@@ -30,17 +30,24 @@ class AuthService extends ApiService {
 
     addInstagram = async payload => {
         const { data } = await this.apiClient.post(ENDPOINTS.INSTAGRAM, payload);
+        this.addInstagramSession(data);
+    
         return data;
     }
 
     deleteInstagram = async payload => {
-        
+
         const {data} = await this.apiClient.delete(`${ENDPOINTS.INSTAGRAM}${payload}/`);
         return data;
     }
 
 
     getInstagramUser = () => {
+        const ig = JSON.parse(localStorage.getItem('instagram'));
+        if(ig){
+            return ig.username;
+        }
+        
         const jwt = JSON.parse(localStorage.getItem('user'));
         let decoded;
         try {
@@ -54,6 +61,11 @@ class AuthService extends ApiService {
     }
 
     getInstagramPicture = () => {
+        const ig = JSON.parse(localStorage.getItem('instagram'));
+        if(ig){
+            return ig.picture;
+        }
+
         const jwt = JSON.parse(localStorage.getItem('user'));
         let decoded;
         try {
@@ -68,12 +80,10 @@ class AuthService extends ApiService {
 
     getEmail = () => {
         const jwt = JSON.parse(localStorage.getItem('user'));
-        let decoded;
+        let decoded ;
         try {
-            console.log("NOPEDEKORIDAN ", jwt);
 
             decoded = jwt_decode(jwt.access);
-            console.log("DEKORIDAN ", decoded);
 
         } catch (error) {
             return null;
@@ -95,7 +105,7 @@ class AuthService extends ApiService {
 
     setAuthorizationHeader = token => {
         this.api.attachHeaders({
-            Authorization: `JWT ${token}`,
+            Authorization: `JWT  ${token}`,
             'content-type': 'application/json'
         });
     }
@@ -107,6 +117,10 @@ class AuthService extends ApiService {
     createSession = (user) => {
         localStorage.setItem('user', JSON.stringify(user));
         this.setAuthorizationHeader(user);
+    }
+
+    addInstagramSession = data => {
+        localStorage.setItem('instagram', JSON.stringify(data));
     }
 
     login = async payload => {

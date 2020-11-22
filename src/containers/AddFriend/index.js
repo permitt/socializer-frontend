@@ -12,6 +12,7 @@ import CircularProgress from '@material-ui/core/CircularProgress';
 import LinearProgress from '@material-ui/core/LinearProgress';
 import Switch from '@material-ui/core/Switch';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
+import { newError } from '../../store/actions/notificationActions';
 
 const FormikTextField = withFormikField(TextField);
 
@@ -24,6 +25,10 @@ function AddFriend(props) {
     });
 
     const handleSubmit = ({ username }) => {
+        if(!props.instagram){
+            props.errorMessage('You must add your instagram account first!');
+            return;
+        }
         props.submit({ username, activeStory: state.checkedStory, activePosts: state.checkedPost, emailNotif: state.checkedEmail });
         setProgress(true);
     }
@@ -133,9 +138,10 @@ function AddFriend(props) {
 }
 
 const mapStateToProps = state => ({
+    instagram: state.auth.instagramUser,
     notif: state.notification.message
 });
 
-const mapDispatchToProps = { submit: addFriendAction };
+const mapDispatchToProps = { submit: addFriendAction, errorMessage: newError };
 
 export default connect(mapStateToProps, mapDispatchToProps)(AddFriend);

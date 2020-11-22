@@ -139,7 +139,7 @@ function AccountSettings(props) {
 
 
 
-
+            {props.instagram && 
 
                     <Grid item xs={10} md={6} style={{ marginTop: 50 }} >
 
@@ -181,6 +181,9 @@ function AccountSettings(props) {
 
                     </Formik>
                     </Grid>
+                    }
+
+                    
                     </Grid>
 
 
@@ -200,7 +203,7 @@ function AccountSettings(props) {
                 </DialogActions>
             </Dialog>
 
-
+            
 
 
             <Footer />

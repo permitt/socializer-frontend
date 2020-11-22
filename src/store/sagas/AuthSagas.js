@@ -35,8 +35,10 @@ export function* logout() {
 export function* addInstagram({ payload }) {
     try {
         const response = yield call(authService.addInstagram, payload);
+        console.log('ODGOVORO ' ,response);
         yield put(newSuccess('Instagram account added!'));
-        yield put(authInstagramAction(payload.username));
+        console.log({username:payload.username, picture:response.picture}, ' SALJEM');
+        yield put(authInstagramAction({username:payload.username, picture:response.picture}));
     } catch (error) {
         yield put(newError(error.response.data.detail));
     }

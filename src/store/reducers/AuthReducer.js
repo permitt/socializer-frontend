@@ -13,7 +13,7 @@ export default (state = initialState, action) => {
         case AUTH_USER:
             return { ...state, isAuthenticated: action.payload, instagramUser: authService.getInstagramUser(), instagramPicture: authService.getInstagramPicture(), email: authService.getEmail() }
         case AUTH_INSTAGRAM:
-            return { ...state, instagramUser: action.payload }
+            return { ...state, instagramUser: action.payload.username, instagramPicture: action.payload.picture }
         case DELETE_INSTAGRAM:
             return {...state, instagramUser: null}
         default:
