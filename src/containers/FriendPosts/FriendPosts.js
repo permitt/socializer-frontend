@@ -53,7 +53,6 @@ function Following(props) {
                             </AccordionSummary>
                             <AccordionDetails>
                                 <Grid container md={12} xs={12} spacing={3}>
-
                                     {!props.posts ? '' : props.posts.filter(post => post.type === 'POST').map(Post => (
                                         <Grid item md={4} xs={12} >
                                             <Card style={{ alignItems: 'center' }}>
@@ -65,7 +64,9 @@ function Following(props) {
                                                 <CardContent style={{ marginLeft: 15 }}>
 
                                                     <Typography>Uploaded at: {formatDate(Post.uploadedAt)}</Typography>
-
+                                                    <Typography>Likes: {Post.num_likes}</Typography>
+                                                    <Typography>Caption: {Post.caption}</Typography>
+                                                    
                                                 </CardContent>
 
                                                 <Grid container justify='center' style={{ marginBottom: 10 }}>
@@ -104,6 +105,7 @@ function Following(props) {
 
                                                 <CardContent style={{ marginLeft: 15 }}>
                                                     <Typography>Uploaded at: {formatDate(Post.uploadedAt)}</Typography>
+                                                    
                                                 </CardContent>
 
                                                 <Grid container justify='center' style={{ marginBottom: 10 }}>

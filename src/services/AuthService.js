@@ -105,8 +105,8 @@ class AuthService extends ApiService {
 
     setAuthorizationHeader = token => {
         this.api.attachHeaders({
-            Authorization: `JWT  ${token}`,
-            'content-type': 'application/json'
+            'Authorization': `JWT  ${token}`,
+            'Content-Type': 'application/json'
         });
     }
     destroySession = () => {
@@ -116,7 +116,7 @@ class AuthService extends ApiService {
 
     createSession = (user) => {
         localStorage.setItem('user', JSON.stringify(user));
-        this.setAuthorizationHeader(user);
+        this.setAuthorizationHeader(user.access);
     }
 
     addInstagramSession = data => {
